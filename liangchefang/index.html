@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="靓车坊 - 专业汽车美容、改装与保养服务平台。提供汽车清洗、镀晶、内饰翻新、音响升级及个性化定制服务，打造您的专属爱车。">
+    <meta name="keywords" content="靓车坊,汽车美容,汽车改装,汽车清洗,内饰翻新,汽车镀晶,音响升级">
+    <title>靓车坊-专业汽车美容与改装服务平台</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #d4a017;
+            --primary-hover: #b08d0f;
+            --text-dark: #1a1a1a;
+            --text-gray: #666666;
+            --bg-light: #f9f9f9;
+            --white: #ffffff;
+            --border-radius: 8px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --container-width: 1200px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--bg-light);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* Layout Utilities */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 60px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .section-header p {
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Header & Nav */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        .cta-button {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: var(--primary-hover);
+            color: var(--white);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://picsum.photos/seed/carwash_hero/1920/800.jpg') center/cover no-repeat;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .btn-outline {
+            border: 2px solid var(--white);
+            color: var(--white);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+
+        .btn-outline:hover {
+            background: var(--white);
+            color: var(--text-dark);
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-img {
+            height: 200px;
+            width: 100%;
+        }
+
+        .service-info {
+            padding: 25px;
+        }
+
+        .service-info h3 {
+            margin-bottom: 10px;
+            font-size: 1.25rem;
+        }
+
+        .service-info p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .service-link {
+            color: var(--primary-color);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Features Section */
+        .features {
+            background: var(--white);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .feature-item h4 {
+            margin-bottom: 10px;
+        }
+
+        .feature-item p {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        /* Process Section */
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-top: 40px;
+        }
+
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 50px;
+            right: 50px;
+            height: 2px;
+            background: #e0e0e0;
+            z-index: 0;
+        }
+
+        .step {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            flex: 1;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--white);
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+
+        .step h4 {
+            margin-bottom: 10px;
+        }
+
+        .step p {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        /* Gallery/Showcase */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 200px);
+            gap: 15px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; height: 100%; }
+        .gallery-item:nth-child(2) { grid-column: span 1; }
+        .gallery-item:nth-child(3) { grid-column: span 1; }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay span {
+            color: var(--white);
+            font-weight: 600;
+            border: 1px solid var(--white);
+            padding: 8px 20px;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: var(--text-dark);
+            color: var(--white);
+        }
+
+        .testimonials .section-header h2 {
+            color: var(--white);
+        }
+
+        .testimonials .section-header p {
+            color: #aaa;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: rgba(255,255,255,0.05);
+            padding: 30px;
+            border-radius: var(--border-radius);
+        }
+
+        .stars {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .quote {
+            font-style: italic;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        .author-info h5 {
+            font-size: 1rem;
+        }
+
+        .author-info span {
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            background: var(--white);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .contact-info h3 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .info-icon {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-top: 3px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            height: 120px;
+        }
+
+        /* Footer */
+        footer {
+            background: #111;
+            color: #888;
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container nav {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+
+            .nav-container nav.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .process-steps {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .process-steps::before {
+                display: none;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: auto;
+            }
+
+            .gallery-item:nth-child(1) {
+                grid-column: span 2;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary-color);">
+                    <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/>
+                    <circle cx="7" cy="17" r="2"/>
+                    <circle cx="17" cy="17" r="2"/>
+                </svg>
+                靓车坊
+            </a>
+            <div class="mobile-menu-btn" onclick="toggleMenu()">☰</div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="#home" class="active">首页</a></li>
+                    <li><a href="#services">服务项目</a></li>
+                    <li><a href="#process">工艺流程</a></li>
+                    <li><a href="#gallery">案例展示</a></li>
+                    <li><a href="#testimonials">车主评价</a></li>
+                    <li><a href="#contact" class="cta-button">立即预约</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>让爱车焕然一新，享受尊贵驾乘体验</h1>
+                <p>靓车坊专注高端汽车美容与改装服务，采用国际先进工艺与环保材料，为您打造独一无二的爱车外观与内饰。</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="cta-button">在线预约</a>
+                    <a href="#services" class="btn-outline">查看服务</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="section features">
+            <div class="container">
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">✨</div>
+                        <h4>专业技师</h4>
+                        <p>持证上岗，经验丰富</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🛡️</div>
+                        <h4>正品材料</h4>
+                        <p>国际品牌原厂供应</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">⏱️</div>
+                        <h4>极速交付</h4>
+                        <p>高效作业，按时交付</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">💯</div>
+                        <h4>售后保障</h4>
+                        <p>质保承诺，无忧服务</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>核心服务项目</h2>
+                    <p>从基础清洁到高端定制，全方位满足您的爱车护理需求</p>
+                </div>
+                <div class="services-grid">
+                    <!-- Service 1 -->
+                    <article class="service-card">
+                        <img src="https://picsum.photos/seed/car_detailing/400/300" alt="深度精洗" class="service-img">
+                        <div class="service-info">
+                            <h3>深度精洗</h3>
+                            <p>包含发动机舱清洁、内饰除味、轮胎轮毂翻新、精细打蜡等全套流程，还原新车般光彩。</p>
+                            <a href="#contact" class="service-link">预约服务 &rarr;</a>
+                        </div>
+                    </article>
+                    <!-- Service 2 -->
+                    <article class="service-card">
+                        <img src="https://picsum.photos/seed/car_painting/400/300" alt="车漆镀晶" class="service-img">
+                        <div class="service-info">
+                            <h3>车漆镀晶</h3>
+                            <p>通过物理反应形成纳米级保护层，有效抵御紫外线、酸雨、划痕，提升车漆亮度与硬度。</p>
+                            <a href="#contact" class="service-link">预约服务 &rarr;</a>
+                        </div>
+                    </article>
+                    <!-- Service 3 -->
+                    <article class="service-card">
+                        <img src="https://picsum.photos/seed/car_interior/400/300" alt="内饰翻新" class="service-img">
+                        <div class="service-info">
+                            <h3>内饰翻新</h3>
+                            <p>针对座椅、顶棚、仪表盘的污渍进行深度清洁与修复，采用环保材料，无异味无甲醛。</p>
+                            <a href="#contact" class="service-link">预约服务 &rarr;</a>
+                        </div>
+                    </article>
+                    <!-- Service 4 -->
+                    <article class="service-card">
+                        <img src="https://picsum.photos/seed/car_audio/400/300" alt="音响升级" class="service-img">
+                        <div class="service-info">
+                            <h3>音响升级</h3>
+                            <p>专业声场调试，为您打造沉浸式听觉盛宴，支持全车隔音降噪处理。</p>
+                            <a href="#contact" class="service-link">预约服务 &rarr;</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section id="process" class="section" style="background-color: var(--white);">
+            <div class="container">
+                <div class="section-header">
+                    <h2>标准化工艺流程</h2>
+                    <p>严谨的标准化流程，确保每一道工序都达到最佳效果</p>
+                </div>
+                <div class="process-steps">
+                    <div class="step">
+                        <div class="step-number">01</div>
+                        <h4>免费检测</h4>
+                        <p>技师上门检测车况，制定个性化护理方案</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">02</div>
+                        <h4>预处理</h4>
+                        <p>使用专业去污剂去除顽固污渍与油膜</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">03</div>
+                        <h4>核心护理</h4>
+                        <p>根据方案执行镀晶、打蜡或内饰翻新</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">04</div>
+                        <h4>精细抛光</h4>
+                        <p>去除微小划痕，提升表面光泽度</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">05</div>
+                        <h4>交付验收</h4>
+                        <p>车主验车签字，提供质保凭证</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>案例展示</h2>
+                    <p>见证每一份匠心，欣赏靓车坊的卓越成果</p>
+                </div>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="https://picsum.photos/seed/car_showcase_big/600/600" alt="高端车漆护理案例">
+                        <div class="gallery-overlay"><span>全车镀晶案例</span></div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://picsum.photos/seed/car_wash_1/300/300" alt="内饰清洗案例">
+                        <div class="gallery-overlay"><span>内饰深度清洁</span></div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://picsum.photos/seed/car_wash_2/300/300" alt="轮毂翻新案例">
+                        <div class="gallery-overlay"><span>轮毂轮毂翻新</span></div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://picsum.photos/seed/car_wash_3/300/300" alt="发动机舱清洁案例">
+                        <div class="gallery-overlay"><span>发动机舱养护</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section id="testimonials" class="section testimonials">
+            <div class="container">
+                <div class="section-header">
+                    <h2>车主口碑</h2>
+                    <p>信赖源于品质，感谢每一位支持靓车坊的车主</p>
+                </div>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p class="quote">“给爱车做了全车镀晶，效果真的惊艳，车漆亮得像镜子一样，而且下雨天水珠滚落非常干净，非常推荐！”</p>
+                        <div class="author">
+                            <img src="https://picsum.photos/seed/user1/100/100" alt="用户头像">
+                            <div class="author-info">
+                                <h5>李先生</h5>
+                                <span>宝马 5系车主</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p class="quote">“内饰翻新服务很细致，把平时很难清理的缝隙都清理干净了，气味也完全消失了，服务态度很好。”</p>
+                        <div class="author">
+                            <img src="https://picsum.photos/seed/user2/100/100" alt="用户头像">
+                            <div class="author-info">
+                                <h5>王女士</h5>
+                                <span>奔驰 GLC 车主</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★☆</div>
+                        <p class="quote">“音响升级后低音效果明显提升，声场定位很准，技师很专业，没有乱推销，体验感满分。”</p>
+                        <div class="author">
+                            <img src="https://picsum.photos/seed/user3/100/100" alt="用户头像">
+                            <div class="author-info">
+                                <h5>张先生</h5>
+                                <span>奥迪 A4L 车主</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>联系我们</h2>
+                    <p>期待您的光临，或在线预约您的专属服务时间</p>
+                </div>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h3>门店地址</h3>
+                        <div class="info-item">
+                            <div class="info-icon">📍</div>
+                            <div>
+                                <strong>靓车坊旗舰店</strong>
+                                <p>上海市浦东新区汽车城大道888号</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">📞</div>
+                            <div>
+                                <strong>服务热线</strong>
+                                <p>021-12345678</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">🕒</div>
+                            <div>
+                                <strong>营业时间</strong>
+                                <p>周一至周日 09:00 - 20:00</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">✉️</div>
+                            <div>
+                                <strong>电子邮箱</strong>
+                                <p>service@liangchefang.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="contact-form" onsubmit="event.preventDefault(); alert('感谢您的留言，我们会尽快与您联系！');">
+                        <div class="form-group">
+                            <input type="text" placeholder="您的姓名" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="联系电话" required>
+                        </div>
+                        <div class="form-group">
+                            <select style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px;">
+                                <option>请选择服务项目</option>
+                                <option>深度精洗</option>
+                                <option>车漆镀晶</option>
+                                <option>内饰翻新</option>
+                                <option>音响升级</option>
+                                <option>其他咨询</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="请输入您的需求或留言..."></textarea>
+                        </div>
+                        <button type="submit" class="cta-button">提交留言</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="logo" style="color: var(--white); margin-bottom: 20px; display: inline-block;">
+                        靓车坊
+                    </a>
+                    <p style="font-size: 0.9rem; line-height: 1.8;">
+                        靓车坊致力于为车主提供高品质的汽车美容与改装服务。我们坚持使用国际领先的工艺与环保材料，以专业、诚信、创新的服务理念，守护您的爱车每一刻。
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>快速导航</h4>
+                    <ul>
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#services">服务项目</a></li>
+                        <li><a href="#process">工艺流程</a></li>
+                        <li><a href="#gallery">案例展示</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>服务项目</h4>
+                    <ul>
+                        <li><a href="#">汽车清洗</a></li>
+                        <li><a href="#">车漆镀晶</a></li>
+                        <li><a href="#">内饰翻新</a></li>
+                        <li><a href="#">音响升级</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关注我们</h4>
+                    <ul>
+                        <li><a href="#">微信公众号</a></li>
+                        <li><a href="#">新浪微博</a></li>
+                        <li><a href="#">小红书</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 靓车坊 版权所有 | 仅供展示用途</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('main-nav');
+            nav.classList.toggle('active');
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    document.getElementById('main-nav').classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+                              </html>
