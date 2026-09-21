@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="决胜焦点 - 专业的体育赛事数据分析与竞技策略平台。提供实时比分、战术深度解析、球队阵容对比及胜负概率预测，助您洞察赛场胜负关键。">
+    <meta name="keywords" content="决胜焦点,体育赛事分析,比赛预测,战术解析,实时比分,体育数据">
+    <title>决胜焦点-专业体育赛事数据与竞技策略分析平台</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary: #00ff88;
+            --primary-dark: #00cc6a;
+            --secondary: #1a1a1a;
+            --bg-dark: #0f0f11;
+            --bg-card: #18181b;
+            --text-main: #ffffff;
+            --text-sub: #a1a1aa;
+            --accent-red: #ff4757;
+            --accent-blue: #2e86de;
+            --border-radius: 8px;
+            --spacing-unit: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(15, 15, 17, 0.95);
+            border-bottom: 1px solid #333;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 24px;
+        }
+
+        nav a {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-sub);
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary);
+        }
+
+        .header-actions button {
+            background-color: var(--primary);
+            color: var(--secondary);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.1s, background-color 0.2s;
+        }
+
+        .header-actions button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(15, 15, 17, 0.9), rgba(0, 20, 10, 0.8)), 
+                        url('https://picsum.photos/seed/sports/1920/1080') no-repeat center center/cover;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background-color: var(--primary);
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-sub);
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-item h3 {
+            font-size: 28px;
+            color: var(--text-main);
+        }
+
+        .stat-item p {
+            font-size: 14px;
+            color: var(--text-sub);
+            margin: 0;
+        }
+
+        /* Live Ticker */
+        .live-ticker {
+            background-color: var(--secondary);
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 10px 0;
+            position: relative;
+        }
+
+        .ticker-label {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 80px;
+            background-color: var(--accent-red);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            z-index: 10;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        .ticker-content {
+            display: inline-block;
+            padding-left: 80px;
+            animation: ticker 30s linear infinite;
+        }
+
+        .match-item {
+            display: inline-block;
+            margin-right: 60px;
+            font-size: 14px;
+        }
+
+        .match-time {
+            color: var(--text-sub);
+            margin-right: 10px;
+        }
+
+        .match-score {
+            font-weight: bold;
+            color: var(--primary);
+            margin: 0 5px;
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Main Content */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+            margin-bottom: 60px;
+        }
+
+        /* Filters */
+        .filters {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background-color: var(--bg-card);
+            border: 1px solid #333;
+            color: var(--text-sub);
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--primary);
+            color: var(--secondary);
+            border-color: var(--primary);
+        }
+
+        /* Match Cards */
+        .match-card {
+            background-color: var(--bg-card);
+            border: 1px solid #333;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .match-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--primary);
+        }
+
+        .match-info {
+            flex: 1;
+        }
+
+        .league-name {
+            font-size: 12px;
+            color: var(--text-sub);
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .teams {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .team-logo {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .team-name {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .match-status {
+            text-align: center;
+            width: 80px;
+        }
+
+        .status-text {
+            font-size: 12px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .match-time-text {
+            font-size: 12px;
+            color: var(--text-sub);
+            margin-top: 2px;
+        }
+
+        .match-analysis {
+            flex: 1;
+            margin-left: 20px;
+            padding-left: 20px;
+            border-left: 1px solid #333;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .analysis-bar {
+            margin-bottom: 8px;
+        }
+
+        .analysis-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--text-sub);
+            margin-bottom: 2px;
+        }
+
+        .progress-bg {
+            height: 4px;
+            background-color: #333;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+
+        .progress-fill.draw { background-color: #f1c40f; }
+
+        .prediction-tag {
+            margin-top: 10px;
+            font-size: 12px;
+            color: var(--accent-blue);
+            background-color: rgba(46, 134, 222, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+            align-self: flex-start;
+        }
+
+        /* Sidebar */
+        .sidebar-section {
+            background-color: var(--bg-card);
+            border: 1px solid #333;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .sidebar-title {
+            font-size: 18px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .prediction-list li {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #333;
+        }
+
+        .prediction-list li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .pred-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .pred-match {
+            color: var(--text-sub);
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .pred-result {
+            font-size: 12px;
+            color: var(--primary);
+        }
+
+        .btn-block {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 12px;
+            background-color: var(--primary);
+            color: var(--secondary);
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        /* Strategy Section */
+        .strategy-section {
+            background: linear-gradient(to right, #0f0f11, #1a1a1a);
+            padding: 60px 0;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .section-header p {
+            color: var(--text-sub);
+        }
+
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .strategy-card {
+            background-color: var(--bg-card);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            border: 1px solid #333;
+        }
+
+        .strategy-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(0, 255, 136, 0.1);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 24px;
+        }
+
+        .strategy-card h3 {
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+
+        .strategy-card p {
+            color: var(--text-sub);
+            font-size: 14px;
+        }
+
+        /* FAQ */
+        .faq-section {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        .faq-item {
+            background-color: var(--bg-card);
+            border: 1px solid #333;
+            margin-bottom: 10px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .faq-answer {
+            padding: 0 20px 20px;
+            color: var(--text-sub);
+            font-size: 14px;
+            line-height: 1.6;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question {
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000;
+            padding: 60px 0 30px;
+            border-top: 1px solid #333;
+            margin-top: 60px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand p {
+            color: var(--text-sub);
+            margin-top: 16px;
+            font-size: 14px;
+            max-width: 300px;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: var(--text-sub);
+            font-size: 14px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #222;
+            color: #555;
+            font-size: 13px;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .match-analysis {
+                border-left: none;
+                margin-left: 0;
+                padding-left: 0;
+                margin-top: 15px;
+                border-top: 1px solid #333;
+                padding-top: 15px;
+                flex-direction: row;
+                gap: 20px;
+            }
+
+            .strategy-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                display: none;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-brand p {
+                margin: 16px auto;
+            }
+
+            .match-analysis {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="logo">
+                <span>◆</span> 决胜焦点
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#">赛事预测</a></li>
+                    <li><a href="#">数据分析</a></li>
+                    <li><a href="#">战术库</a></li>
+                    <li><a href="#">专家专栏</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button>登录 / 注册</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="live-ticker">
+        <div class="ticker-label">Live</div>
+        <div class="ticker-content">
+            <div class="match-item"><span class="match-time">23:45</span> 曼联 <span class="match-score">2 - 1</span> 利物浦</div>
+            <div class="match-item"><span class="match-time">22:00</span> 阿森纳 <span class="match-score">1 - 1</span> 切尔西</div>
+            <div class="match-item"><span class="match-time">21:30</span> 巴萨 <span class="match-score">3 - 0</span> 皇马</div>
+            <div class="match-item"><span class="match-time">23:45</span> 曼联 <span class="match-score">2 - 1</span> 利物浦</div>
+            <div class="match-item"><span class="match-time">22:00</span> 阿森纳 <span class="match-score">1 - 1</span> 切尔西</div>
+            <div class="match-item"><span class="match-time">21:30</span> 巴萨 <span class="match-score">3 - 0</span> 皇马</div>
+        </div>
+    </div>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-content">
+                <h1>洞察赛场 <span>决胜焦点</span></h1>
+                <p>基于大数据驱动的深度竞技分析。不仅仅是比分，更是对战术博弈、球员状态及历史数据的全方位解码。助您在每一次决策中掌握先机。</p>
+                <button class="btn-block" style="width: auto; padding: 12px 40px; font-size: 16px;">开始深度分析</button>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <h3>500+</h3>
+                        <p>覆盖赛事</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>98%</h3>
+                        <p>数据准确率</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>10k+</h3>
+                        <p>专业用户</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="main-grid">
+                <!-- Main Content -->
+                <div class="content-area">
+                    <div class="filters">
+                        <button class="filter-btn active">全部赛事</button>
+                        <button class="filter-btn">英超</button>
+                        <button class="filter-btn">西甲</button>
+                        <button class="filter-btn">欧冠</button>
+                        <button class="filter-btn">NBA</button>
+                    </div>
+
+                    <article class="match-card">
+                        <div class="match-info">
+                            <div class="league-name">欧冠联赛 · 半决赛首回合</div>
+                            <div class="teams">
+                                <div class="team-logo" style="background:#2c3e50">ACM</div>
+                                <span class="team-name">AC米兰</span>
+                            </div>
+                        </div>
+                        <div class="match-status">
+                            <div class="status-text">进行中</div>
+                            <div class="match-time-text">67'</div>
+                        </div>
+                        <div class="match-analysis">
+                            <div class="analysis-bar">
+                                <div class="analysis-label"><span>控球率</span> <span>58% - 42%</span></div>
+                                <div class="progress-bg"><div class="progress-fill" style="width: 58%"></div></div>
+                            </div>
+                            <div class="analysis-bar">
+                                <div class="analysis-label"><span>射门</span> <span>14 - 6</span></div>
+                                <div class="progress-bg"><div class="progress-fill" style="width: 70%"></div></div>
+                            </div>
+                            <div class="analysis-bar">
+                                <div class="analysis-label"><span>预期进球 (xG)</span> <span>2.1 - 0.8</span></div>
+                                <div class="progress-bg"><div class="progress-fill" style="width: 72%"></div></div>
+                            </div>
+                            <span class="prediction-tag">进攻端压制明显</span>
+                        </div>
+                    </article>
+
+                    <article class="match-card">
+                        <div class="match-info">
+                            <div class="league-name">NBA · 常规赛</div>
+                            <div class="teams">
+                                <div class="team-logo" style="background:#c0392b">LAL</div>
+                                <span class="team-name">湖人队</span>
+                                <span class="team-logo" style="background:#2980b9">BOS</span>
+                                <span class="team-name">凯尔特人</span>
+                            </div>
+                        </div>
+                        <div class="match-status">
+                            <div class="status-text">已结束</div>
+                            <div class="match-time-text">105 - 112</div>
+                        </div>
+                        <div class="match-analysis">
+                            <div class="analysis-bar">
+                                <div class="analysis-label"><span>命中率</span> <span>48% - 51%</span></div>
+                                <div class="progress-bg"><div class="progress-fill draw" style="width: 49%"></div></div>
+                            </div>
+                            <div class="analysis-bar">
+                                <div class="analysis-label"><span>三分球</span> <span>10 - 14</span></div>
+                                <div class="progress-bg"><div class="progress-fill" style="width: 40%"></div></div>
+                            </div>
+                            <span class="prediction-tag">三分雨终结比赛</span>
+                        </div>
+                    </article>
+
+                    <article class="match-card">
+                        <div class="match-info">
+                            <div class="league-name">中超联赛</div>
+                            <div class="teams">
+                                <div class="team-logo" style="background:#d35400">申花</div>
+                                <span class="team-name">上海申花</span>
+                            </div>
+                        </div>
+                        <div class="match-status">
+                            <div class="status-text">待定</div>
+                            <div class="match-time-text">20:00</div>
+                        </div>
+                        <div class="match-analysis">
+                            <div class="analysis-bar">
+                                <div class="analysis-label"><span>历史交锋</span> <span>申花占优</span></div>
+                                <div class="progress-bg"><div class="progress-fill" style="width: 60%"></div></div>
+                            </div>
+                            <div class="analysis-bar">
+                                <div class="analysis-label"><span>主场优势</span> <span>高</span></div>
+                                <div class="progress-bg"><div class="progress-fill" style="width: 85%"></div></div>
+                            </div>
+                            <span class="prediction-tag">看好主队不败</span>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Sidebar -->
+                <aside class="sidebar">
+                    <div class="sidebar-section">
+                        <div class="sidebar-title">
+                            <span>热门预测</span>
+                            <a href="#" style="font-size: 12px; color: var(--primary);">查看全部</a>
+                        </div>
+                        <ul class="prediction-list">
+                            <li>
+                                <div class="pred-header">
+                                    <span>曼联 vs 利物浦</span>
+                                    <span class="pred-result">胜/平</span>
+                                </div>
+                                <div class="pred-match">英超 · 第30轮</div>
+                                <div class="pred-result">胜率: 58%</div>
+                            </li>
+                            <li>
+                                <div class="pred-header">
+                                    <span>勇士 vs 湖人</span>
+                                    <span class="pred-result">大分</span>
+                                </div>
+                                <div class="pred-match">NBA · 常规赛</div>
+                                <div class="pred-result">大分概率: 65%</div>
+                            </li>
+                            <li>
+                                <div class="pred-header">
+                                    <span>皇马 vs 马竞</span>
+                                    <span class="pred-result">主胜</span>
+                                </div>
+                                <div class="pred-match">国王杯</div>
+                                <div class="pred-result">胜率: 62%</div>
+                            </li>
+                            <li>
+                                <div class="pred-header">
+                                    <span>拜仁 vs 多特</span>
+                                    <span class="pred-result">让球胜</span>
+                                </div>
+                                <div class="pred-match">德甲</div>
+                                <div class="pred-result">胜率: 71%</div>
+                            </li>
+                        </ul>
+                        <button class="btn-block">获取更多预测</button>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <div class="sidebar-title">
+                            <span>数据工具</span>
+                        </div>
+                        <div style="display: grid; gap: 10px;">
+                            <a href="#" style="display: block; padding: 10px; background: #222; border-radius: 4px; font-size: 14px;">阵容查询</a>
+                            <a href="#" style="display: block; padding: 10px; background: #222; border-radius: 4px; font-size: 14px;">伤停情报</a>
+                            <a href="#" style="display: block; padding: 10px; background: #222; border-radius: 4px; font-size: 14px;">历史比分</a>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- Strategy Section -->
+        <section class="strategy-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>科学分析，决胜千里</h2>
+                    <p>我们提供超越直觉的数据支持，助您构建理性的观赛与决策体系。</p>
+                </div>
+                <div class="strategy-grid">
+                    <div class="strategy-card">
+                        <div class="strategy-icon">📊</div>
+                        <h3>多维数据模型</h3>
+                        <p>整合攻防效率、xG（预期进球）、传球成功率等核心指标，通过算法生成客观的比赛倾向。</p>
+                    </div>
+                    <div class="strategy-card">
+                        <div class="strategy-icon">🧠</div>
+                        <h3>战术深度解析</h3>
+                        <p>解析教练排兵布阵、阵型切换及临场换人策略，洞察比赛背后的战术博弈。</p>
+                    </div>
+                    <div class="strategy-card">
+                        <div class="strategy-icon">⚠️</div>
+                        <h3>风险预警系统</h3>
+                        <p>实时监控球队伤病、停赛及红黄牌数据，及时预警可能影响比赛走势的突发因素。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <div class="section-header">
+                <h2>常见问题</h2>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">数据分析的准确率如何？</div>
+                <div class="faq-answer">我们的数据模型基于数千场比赛的历史数据训练，结合实时赛况进行动态修正。虽然没有任何预测能保证100%准确，但我们的模型在长期统计中表现稳定，能为用户提供有价值的参考。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">如何利用这些数据提高胜率？</div>
+                <div class="faq-answer">建议不要盲目依赖单一数据。我们推荐您结合球队近期状态、伤停情况以及历史交锋记录进行综合判断。重点关注控球率与射门转化率的对比，这往往是比赛走势的风向标。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">除了比分，还提供哪些信息？</div>
+                <div class="faq-answer">除了实时比分，我们还提供详细的半场分析、球员热图、犯规统计以及基于大数据的赔率变动趋势预测，全方位满足专业球迷的需求。</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">◆ 决胜焦点</a>
+                    <p>专注于体育赛事的深度数据挖掘与竞技策略分析，致力于为体育爱好者提供最专业、最客观的决策辅助工具。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>栏目导航</h4>
+                    <ul>
+                        <li><a href="#">赛事日历</a></li>
+                        <li><a href="#">深度分析</a></li>
+                        <li><a href="#">数据榜单</a></li>
+                        <li><a href="#">专家团</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>数据服务</h4>
+                    <ul>
+                        <li><a href="#">API接口</a></li>
+                        <li><a href="#">数据订阅</a></li>
+                        <li><a href="#">企业方案</a></li>
+                        <li><a href="#">帮助中心</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关注我们</h4>
+                    <ul>
+                        <li><a href="#">微信公众号</a></li>
+                        <li><a href="#">新浪微博</a></li>
+                        <li><a href="#">官方论坛</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 决胜焦点 版权所有 | 本站数据仅供参考，不构成投资建议</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Accordion Logic
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', event => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+
+        // Filter Button Logic
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+    </script>
+</body>
+                              </html>
