@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="全党必须增强的四个意识 - 政治意识、大局意识、核心意识、看齐意识深度解读与学习资料。">
+    <meta name="keywords" content="全党必须增强的四个意识,四个意识,政治意识,大局意识,核心意识,看齐意识,党建工作">
+    <title>全党必须增强的四个意识 - 政治建设与党性修养学习指南</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #c0392b;
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+            --light-text: #666;
+            --card-bg: #ffffff;
+            --border-radius: 8px;
+            --spacing-unit: 1rem;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Header & Nav */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header-inner {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: #ecf0f1;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: rgba(255,255,255,0.1);
+            opacity: 1;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #2c3e50 0%, #4ca1af 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(192, 57, 43, 0.4);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: var(--container-width);
+            margin: 40px auto;
+            padding: 0 var(--spacing-unit);
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            nav {
+                display: none;
+                position: absolute;
+                top: 64px;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-color);
+                padding: 20px;
+            }
+            nav.open {
+                display: block;
+            }
+            nav ul {
+                flex-direction: column;
+            }
+        }
+
+        /* Section Styles */
+        section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .section-title span {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--light-text);
+            border-left: none;
+            padding-left: 0;
+        }
+
+        /* Awareness Cards */
+        .awareness-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid transparent;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .card.politics { border-color: #e74c3c; }
+        .card.overview { border-color: #3498db; }
+        .card.core { border-color: #9b59b6; }
+        .card.alignment { border-color: #f39c12; }
+
+        .card-header {
+            padding: 20px;
+            background: #fdfdfd;
+            border-bottom: 1px solid #eee;
+        }
+
+        .card-header h3 {
+            font-size: 1.25rem;
+            margin-bottom: 5px;
+        }
+
+        .card-header .tag {
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background-color: #eee;
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        .card-body {
+            padding: 20px;
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .card-body p {
+            margin-bottom: 15px;
+        }
+
+        .card-body ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .card-body li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        .card-body li::before {
+            content: "•";
+            color: var(--accent-color);
+            position: absolute;
+            left: -15px;
+        }
+
+        /* Sidebar */
+        aside {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .sidebar-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .sidebar-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+
+        .info-list li {
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            border-bottom: 1px dashed #eee;
+            padding-bottom: 8px;
+        }
+
+        .info-list li span:first-child {
+            color: var(--light-text);
+        }
+
+        .info-list li span:last-child {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .quote-box {
+            background-color: #f4f6f7;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            font-style: italic;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        /* Context/Background Section */
+        .context-section {
+            background-color: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            margin-bottom: 40px;
+        }
+
+        .context-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .context-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .context-text h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .context-text p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .context-image {
+            background-color: #eee;
+            height: 300px;
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 1.2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .context-image::after {
+            content: "组织建设";
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.8rem;
+            border-radius: 4px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: #bdc3c7;
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            margin: 0 10px;
+            color: #bdc3c7;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <span>党建</span>学习网
+            </div>
+            <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#concept">概念内涵</a></li>
+                    <li><a href="#significance">重要意义</a></li>
+                    <li><a href="#practice">实践要求</a></li>
+                    <li><a href="#faq">常见问题</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>全党必须增强的四个意识</h1>
+                <p>政治意识、大局意识、核心意识、看齐意识。加强党的政治建设，提高政治站位，确保全党步调一致向前进。</p>
+                <a href="#concept" class="hero-btn">深入学习</a>
+            </div>
+        </section>
+
+        <div class="container">
+            <!-- Main Content Area -->
+            <div class="main-content">
+                
+                <!-- Concept Section -->
+                <section id="concept">
+                    <div class="section-title">
+                        <h2>概念内涵</h2>
+                        <span>四个意识详解</span>
+                    </div>
+                    <div class="awareness-grid">
+                        <!-- 政治意识 -->
+                        <article class="card politics">
+                            <div class="card-header">
+                                <h3>政治意识</h3>
+                                <span class="tag">核心基础</span>
+                            </div>
+                            <div class="card-body">
+                                <p>要求党员必须时刻绷紧政治这根弦，在重大原则问题上立场坚定，旗帜鲜明。</p>
+                                <ul>
+                                    <li>坚定政治信仰</li>
+                                    <li>站稳政治立场</li>
+                                    <li>把准政治方向</li>
+                                    <li>防范政治风险</li>
+                                </ul>
+                            </div>
+                        </article>
+
+                        <!-- 大局意识 -->
+                        <article class="card overview">
+                            <div class="card-header">
+                                <h3>大局意识</h3>
+                                <span>战略高度</span>
+                            </div>
+                            <div class="card-body">
+                                <p>要求自觉从大局看问题，把本地区本部门的工作放到党和国家事业发展大局中去思考和谋划。</p>
+                                <ul>
+                                    <li>服从服务大局</li>
+                                    <li>自觉维护团结</li>
+                                    <li>做到令行禁止</li>
+                                    <li>防止本位主义</li>
+                                </ul>
+                            </div>
+                        </article>
+
+                        <!-- 核心意识 -->
+                        <article class="card core">
+                            <div class="card-header">
+                                <h3>核心意识</h3>
+                                <span>组织保证</span>
+                            </div>
+                            <div class="card-body">
+                                <p>要求自觉在思想上政治上行动上同党中央保持高度一致，坚决维护党中央权威和集中统一领导。</p>
+                                <ul>
+                                    <li>维护党中央权威</li>
+                                    <li>服从党中央集中统一领导</li>
+                                    <li>增强组织观念</li>
+                                    <li>听党指挥跟党走</li>
+                                </ul>
+                            </div>
+                        </article>
+
+                        <!-- 看齐意识 -->
+                        <article class="card alignment">
+                            <div class="card-header">
+                                <h3>看齐意识</h3>
+                                <span>行动指南</span>
+                            </div>
+                            <div class="card-body">
+                                <p>要求自觉主动向党中央看齐，向党的理论和路线方针政策看齐，向党中央决策部署看齐。</p>
+                                <ul>
+                                    <li>经常主动看齐</li>
+                                    <li>切实做到看齐</li>
+                                    <li>自觉修正偏差</li>
+                                    <li>保持步调一致</li>
+                                </ul>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Context Section -->
+                <section id="significance" class="context-section">
+                    <div class="section-title">
+                        <h2>重要意义与背景</h2>
+                        <span>理论依据</span>
+                    </div>
+                    <div class="context-content">
+                        <div class="context-text">
+                            <h3>加强政治建设的必然要求</h3>
+                            <p>“四个意识”是党在长期实践中形成的宝贵经验总结，是马克思主义政党的基本要求。增强“四个意识”是维护党的团结统一的根本保证，是确保全党统一意志、统一行动、步调一致向前进的基本前提。</p>
+                            <h3>应对风险挑战的现实需要</h3>
+                            <p>面对复杂的国际形势和艰巨繁重的国内改革发展稳定任务，只有增强“四个意识”，才能有效应对重大挑战、抵御重大风险、克服重大阻力、解决重大矛盾，确保党和国家事业始终沿着正确方向前进。</p>
+                        </div>
+                        <div class="context-image">
+                            <!-- Placeholder for visual representation of party building or meeting -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Practice Section -->
+                <section id="practice">
+                    <div class="section-title">
+                        <h2>实践要求</h2>
+                        <span>如何落实</span>
+                    </div>
+                    <div class="awareness-grid">
+                        <article class="card">
+                            <div class="card-header">
+                                <h3>强化理论武装</h3>
+                            </div>
+                            <div class="card-body">
+                                <p>深入学习习近平新时代中国特色社会主义思想，用党的创新理论武装头脑，打牢增强“四个意识”的思想根基。</p>
+                            </div>
+                        </article>
+                        <article class="card">
+                            <div class="card-header">
+                                <h3>严守政治纪律</h3>
+                            </div>
+                            <div class="card-body">
+                                <p>把严守政治纪律和政治规矩放在首位，在大是大非面前保持清醒头脑，坚决反对“七个有之”，做到“五个必须”。</p>
+                            </div>
+                        </article>
+                        <article class="card">
+                            <div class="card-header">
+                                <h3>勇于担当作为</h3>
+                            </div>
+                            <div class="card-body">
+                                <p>将增强“四个意识”转化为干事创业的实际行动，立足本职岗位，履职尽责，攻坚克难，以实际行动诠释忠诚干净担当。</p>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- Sidebar Area -->
+            <aside>
+                <div class="sidebar-card">
+                    <h3>核心要点速记</h3>
+                    <ul class="info-list">
+                        <li><span>政治意识</span><span>方向问题</span></li>
+                        <li><span>大局意识</span><span>站位问题</span></li>
+                        <li><span>核心意识</span><span>权威问题</span></li>
+                        <li><span>看齐意识</span><span>行动问题</span></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-card">
+                    <h3>相关文件</h3>
+                    <ul class="info-list">
+                        <li><a href="#">关于新形势下党内政治生活的若干准则</a></li>
+                        <li><a href="#">中国共产党章程</a></li>
+                        <li><a href="#">中国共产党纪律处分条例</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-card">
+                    <div class="quote-box">
+                        “增强‘四个意识’、坚定‘四个自信’、做到‘两个维护’，是党的政治建设的根本要求。”
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>党建学习网 - 旨在提供严谨、准确的党建知识学习资源。</p>
+            <div class="footer-links">
+                <a href="#">关于我们</a>
+                <a href="#">联系方式</a>
+                <a href="#">版权声明</a>
+            </div>
+            <p style="margin-top: 20px; font-size: 0.8rem; opacity: 0.6;">&copy; 2023 党建知识学习平台. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple Mobile Menu Toggle
+        function toggleMenu() {
+            var nav = document.getElementById('main-nav');
+            nav.classList.toggle('open');
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                var target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    // Close mobile menu if open
+                    var nav = document.getElementById('main-nav');
+                    nav.classList.remove('open');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
